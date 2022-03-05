@@ -9,3 +9,14 @@
 - Check the 'Armature Layer Presets' option.
 
 ![](images/ALP_UI_e.png)
+
+# Support the Developer:
+
+**Gumroad**
+
+https://tingjoybits.gumroad.com
+
+**Patreon**
+
+https://www.patreon.com/tingjoybits
+
