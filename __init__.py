@@ -28,7 +28,7 @@ bl_info = {
     "location": "Properties > Object Data > Skeleton (Panel Header)",
     "description": "Save and load the selection of the skeleton layers as a quick presets",
     "warning": "",
-    "doc_url": "",
+    "doc_url": "https://github.com/tingjoybits/Armature_Layer_Presets",
     "category": "Interface",
 }
 
