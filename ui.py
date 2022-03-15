@@ -68,19 +68,35 @@ def draw_header_preset(self, context):
     layout.popover("POPOVER_PT_skeleton_layer_presets", text='Layers', icon='PRESET')
 
 
+def get_panel_subclasses(cls):
+    subclasses = []
+    for scls in bpy.types.Panel.__subclasses__():
+        if hasattr(scls, "bl_parent_id"):
+            if not scls.bl_parent_id == cls.__name__:
+                continue
+            subclasses.append(scls)
+    return subclasses
+
+
 def register_header_preset(cls):
-    if "bl_rna" in cls.__dict__:
-        bpy.utils.unregister_class(cls)
+    classes = [cls] + get_panel_subclasses(cls)
+    for c in classes:
+        if "bl_rna" in c.__dict__:
+            bpy.utils.unregister_class(c)
     setattr(cls, 'draw_header_preset', staticmethod(draw_header_preset))
-    bpy.utils.register_class(cls)
+    for c in classes:
+        bpy.utils.register_class(c)
 
 
 def unregister_header_preset(cls):
-    if "bl_rna" in cls.__dict__:
-        bpy.utils.unregister_class(cls)
+    classes = [cls] + get_panel_subclasses(cls)
+    for c in classes:
+        if "bl_rna" in c.__dict__:
+            bpy.utils.unregister_class(c)
     if hasattr(cls, 'draw_header_preset'):
         del cls.draw_header_preset
-    bpy.utils.register_class(cls)
+    for c in classes:
+        bpy.utils.register_class(c)
 
 
 classes = [
